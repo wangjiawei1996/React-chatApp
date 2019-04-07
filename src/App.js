@@ -17,8 +17,23 @@ function Solider(props) {
   return <h3>骑兵连冲啊，老大{props.big}</h3>
 }
 class Firstclub extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      soliders: ['虎子', '柱子', '水生']
+    }
+  }
   render() {
-    return <h2>一营营长是{this.props.big}</h2>
+    return (
+      <div>
+        <h2>一营营长是{this.props.big}</h2>
+        <ul>
+          {this.state.soliders.map(v => {
+            return <li key={v}>{v}</li>
+          })}
+        </ul>
+      </div>
+    )
   }
 }
 
