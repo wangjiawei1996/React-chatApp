@@ -7,15 +7,18 @@ class App extends React.Component{
     return (
       <div>
         <h1>独立团，团长是{boss}</h1>
-        <Firstclub></Firstclub>
+        <Firstclub big="张大彪"></Firstclub>
+        <Solider big="孙德胜"></Solider>
       </div>
     )
   }
 }
+function Solider(props) {
+  return <h3>骑兵连冲啊，老大{props.big}</h3>
+}
 class Firstclub extends React.Component {
   render() {
-    const boss = '张大彪'
-    return <h2>一营营长是{boss}</h2>
+    return <h2>一营营长是{this.props.big}</h2>
   }
 }
 
