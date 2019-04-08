@@ -24,6 +24,12 @@ class Firstclub extends React.Component {
     }
     // this.addSolider = this.addSolider.bind(this)
   }
+  componentWillMount() {
+    console.log('组件马上要加载了')
+  }
+  componentDidMount() {
+    console.log('组件加载完毕')
+  }
   addSolider() {
     // console.log('Hello solid')
     this.setState({
@@ -31,6 +37,7 @@ class Firstclub extends React.Component {
     })
   }
   render() {
+    console.log('组件正在加载')
     return (
       <div>
         <h2>一营营长是{this.props.big}</h2>
