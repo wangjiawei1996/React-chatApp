@@ -22,11 +22,19 @@ class Firstclub extends React.Component {
     this.state = {
       soliders: ['虎子', '柱子', '水生']
     }
+    // this.addSolider = this.addSolider.bind(this)
+  }
+  addSolider() {
+    // console.log('Hello solid')
+    this.setState({
+      soliders:[...this.state.soliders,'新兵蛋子'+Math.random()]
+    })
   }
   render() {
     return (
       <div>
         <h2>一营营长是{this.props.big}</h2>
+        <button onClick={() => this.addSolider()}>新兵入伍</button>
         <ul>
           {this.state.soliders.map(v => {
             return <li key={v}>{v}</li>
