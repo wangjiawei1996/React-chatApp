@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Button,List} from 'antd-mobile'
 class App extends React.Component{
   
   render() {
@@ -41,12 +41,18 @@ class Firstclub extends React.Component {
     return (
       <div>
         <h2>一营营长是{this.props.big}</h2>
-        <button onClick={() => this.addSolider()}>新兵入伍</button>
-        <ul>
+        <Button type="primary" onClick={() => this.addSolider()}>新兵入伍</Button>
+        <List
+          renderHeader={() => '士兵列表'}
+        >
           {this.state.soliders.map(v => {
-            return <li key={v}>{v}</li>
+            return (
+              <List.Item key={v}>
+                {v}
+              </List.Item>
+            )
           })}
-        </ul>
+        </List>
       </div>
     )
   }
