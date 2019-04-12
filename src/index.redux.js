@@ -13,9 +13,9 @@ export function counter(state=0, action) {
   }
 }
 //actionCreator
-export function addGUN() {
+export function addGun() {
   return {type:ADD_GUN}
 }
-export function removeGUN() {
+export function removeGun() {
   return {type:REMOVE_GUN}
 }
