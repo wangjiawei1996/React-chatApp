@@ -1,6 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addGun, removeGun, addGunAsync} from './index.redux'
+const mapStatetoProps = (state) => {
+  return {num:state}
+}
+const actionCreators = { addGun, removeGun, addGunAsync}
+// App = connect(mapStatetoProps, actionCreators)(App)
+@connect(mapStatetoProps, actionCreators)
 class App extends React.Component{
   render() {
     return (
@@ -13,9 +19,4 @@ class App extends React.Component{
     )
   }
 }
-const mapStatetoProps = (state) => {
-  return {num:state}
-}
-const actionCreators = { addGun, removeGun, addGunAsync}
-App = connect(mapStatetoProps, actionCreators)(App)
 export default App
