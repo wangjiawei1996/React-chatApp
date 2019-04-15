@@ -8,7 +8,7 @@ class App extends React.Component{
         <h1>现在有机枪{this.props.num}把</h1>
         <button onClick={this.props.addGun}>申请机枪</button>
         <button onClick={this.props.removeGun}>上交武器</button>
-        <button onClick={this.props.addGunAsync}>拖几天再给</button>
+        <button onClick={this.props.addGunAsync}>拖几天再给机枪</button>
       </div>
     )
   }
