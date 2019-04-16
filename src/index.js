@@ -4,7 +4,13 @@ import App from './App'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Link} from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  // Redirect,
+  Switch
+} from 'react-router-dom';
 import { counter } from './index.redux';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -32,10 +38,12 @@ ReactDom.render(
             <Link to='/sanying'>三营</Link>
           </li>
         </ul>
+        <Switch>
+          <Route path='/' exact component={App}></Route>
+          <Route path='/erying' component={Erying}></Route>
+          <Route path='/sanying' component={Sanying}></Route>
+        </Switch>
       </div>
-      <Route path='/' exact component={App}></Route>
-      <Route path='/erying' component={Erying}></Route>
-      <Route path='/sanying' component={Sanying}></Route>
     </BrowserRouter>
   </Provider>),
   document.getElementById('root')
