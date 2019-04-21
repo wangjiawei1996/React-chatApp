@@ -11,10 +11,10 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
-import { counter } from './index.redux';
-
+// import { counter } from './index.redux';
+import reducers from './reducer'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(counter, composeEnhancers(
+const store = createStore(reducers , composeEnhancers(
   applyMiddleware(thunk)
 ))
 ReactDom.render(
