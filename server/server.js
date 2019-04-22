@@ -37,7 +37,7 @@ const app = express()
 app.get('/', function(req, res) {
   res.send("<h1>Hello World</h1>")
 })
-app.get('/news', function(req, res) {
+app.get('/data', function(req, res) {
   User.findOne({user:'xiaoming'},function(err, doc) {
     res.json(doc)
   })
