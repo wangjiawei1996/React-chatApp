@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import Auth from './Auth'
+import './config'
+import 'antd-mobile/dist/antd-mobile.css'
 import Dashboard from './Dashboard'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
