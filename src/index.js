@@ -14,6 +14,7 @@ import Register from './container/register/register'
 import AuthRoute from './component/authroute/authroute'
 import reducers from './reducer'
 import './config'
+import './index.css'
 import 'antd-mobile/dist/antd-mobile.css'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
