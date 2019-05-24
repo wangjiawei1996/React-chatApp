@@ -9,9 +9,7 @@ class GeniusInfo extends React.Component {
     super(props)
     this.state = {
       title: '',
-      desc:'',
-			company:'',
-			money:''
+      desc:''
     }
   }
   onChange(key, val) {
