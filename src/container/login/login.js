@@ -5,18 +5,37 @@ import { login } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-function hello() {
-  console.log('hello Imooc i love React')
-}
-function WrapperHello(fn) {
-  return function() {
-    console.log('before say hello')
-    fn();
-    console.log('after say hello')
+// function hello() {
+//   console.log('hello Imooc i love React')
+// }
+// function WrapperHello(fn) {
+//   return function() {
+//     console.log('before say hello')
+//     fn();
+//     console.log('after say hello')
+//   }
+// }
+// hello = WrapperHello(hello)
+// hello()
+class Hello extends React.Component {
+  render() {
+    return <h2>hello Imooc I love React&&Redux</h2>
   }
 }
-hello = WrapperHello(hello)
-hello()
+function WrapperHello(Comp) {
+  class WrapComp extends React.Component {
+    render() {
+      return (
+        <div>
+          <p>这是一个HOC高阶组件</p>
+          <Comp {...this.props}></Comp>
+        </div>
+      )
+    }
+  }
+  return WrapComp
+}
+Hello = WrapperHello(Hello)
 class Login extends React.Component{
   constructor(props){
     super(props)
@@ -41,7 +60,8 @@ class Login extends React.Component{
   render() {
     return (
       <div>
-      {(this.props.redirectTo&&this.props.redirectTo!=='/login')? <Redirect to={this.props.redirectTo} />:null}
+        <Hello></Hello>
+        {(this.props.redirectTo&&this.props.redirectTo!=='/login')? <Redirect to={this.props.redirectTo} />:null}
         <Logo></Logo>
         <WingBlank>
           <List>
