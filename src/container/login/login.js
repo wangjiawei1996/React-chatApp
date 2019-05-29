@@ -4,6 +4,19 @@ import {List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 import { login } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+function hello() {
+  console.log('hello Imooc i love React')
+}
+function WrapperHello(fn) {
+  return function() {
+    console.log('before say hello')
+    fn();
+    console.log('after say hello')
+  }
+}
+hello = WrapperHello(hello)
+hello()
 class Login extends React.Component{
   constructor(props){
     super(props)
