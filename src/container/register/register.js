@@ -61,4 +61,4 @@ class Register extends React.Component {
     )
   }
 }
-export default Form(connect (state => state.user, {register})(Register))
+export default connect (state => state.user, {register}) (Form(Register))

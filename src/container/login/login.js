@@ -45,4 +45,4 @@ class Login extends React.Component{
     )
   }
 }
-export default Form(connect(state=>state.user, {login})(Login))
+export default connect(state=>state.user, {login})(Form(Login))
