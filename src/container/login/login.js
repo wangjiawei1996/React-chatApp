@@ -3,6 +3,7 @@ import Logo from '../../component/logo/logo'
 import {List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 import { login } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
+// import { createForm } from 'rc-form';
 import { connect } from 'react-redux'
 import Form from '../../component/form/form'
 class Login extends React.Component{
@@ -21,6 +22,7 @@ class Login extends React.Component{
     this.props.login(this.props.state)
   }
   render() {
+    // const { getFieldProps } = this.props.form;
     return (
       <div>
         {(this.props.redirectTo&&this.props.redirectTo!=='/login')? <Redirect to={this.props.redirectTo} />:null}
@@ -35,6 +37,7 @@ class Login extends React.Component{
             <InputItem
               onChange={v => this.props.handleChange('pwd', v)}
               type="password"
+              // {...getFieldProps('password')}
             >密码</InputItem>
           </List>
           <Button onClick = {this.handleLogin} type='primary'>登录</Button>
@@ -45,4 +48,4 @@ class Login extends React.Component{
     )
   }
 }
-export default connect(state=>state.user, {login})(Form(Login))
+export default (connect(state=>state.user, {login}) (Form(Login)))

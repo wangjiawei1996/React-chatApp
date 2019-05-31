@@ -17,8 +17,9 @@ class UserCard extends React.Component {
       <WhiteSpace></WhiteSpace>
         {this.props.userlist.map(v => (
           v.avatar?(
-            <Card 
-              key={v._id} 
+            <Card
+              style={{zIndex:1}}
+              key={v._id}
               onClick={()=>this.handleChick(v)}
             >
             <Header
