@@ -1,7 +1,9 @@
 import React from 'react';
-import io from 'socket.io-client'
 import { List, InputItem } from 'antd-mobile';
-const socket = io('ws://localhost:9093')
+import io from 'socket.io-client'
+import { connect } from 'react-redux'
+import { getMegList } from '../../redux/chat.redux'
+// const socket = io('ws://localhost:9093')
 
 class Chat extends React.Component {
   constructor(props) {
@@ -9,14 +11,15 @@ class Chat extends React.Component {
     this.state = {text: '',msg:[]}
   }
   componentDidMount() {
-    socket.on('recvmsg', (data)=>{
-      this.setState({
-        msg:[...this.state.msg, data.text]
-      })
-    })
+    this.props.getMegList()
+    // socket.on('recvmsg', (data)=>{
+    //   this.setState({
+    //     msg:[...this.state.msg, data.text]
+    //   })
+    // })
   }
   handleSubmit() {
-    socket.emit('sendmsg',{text: this.state.text})
+    // socket.emit('sendmsg',{text: this.state.text})
     this.setState({text: ''})
   }
   render() {
@@ -41,4 +44,4 @@ class Chat extends React.Component {
     )
   }
 }
-export default Chat;
+export default connect(state => state, {getMegList}) (Chat);
