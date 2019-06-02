@@ -18,14 +18,30 @@ export function chat(state = initState, action) {
   switch(action.type) {
     case MSG_LIST:
       return {...state, chatmsg: action.payload, unread: action.payload.filter(v=>!v.read).length}
-    // case MSG_RECV:
+    case MSG_RECV:
+      return {...state, chatmsg: [...state.chatmsg, action.payload]}
     // case MSG_READ:
     default:
       return state
   }
 }
 function msgList(msgs) {
-  return { type: 'MSG_LIST', payload: msgs}
+  return { type: MSG_LIST, payload: msgs}
+}
+function msgRecv(msg) {
+  return { type: MSG_RECV, payload: msg}
+}
+export function recvMsg() {
+  return dispatch => {
+    socket.on('recvmsg', function(data) {
+      dispatch(msgRecv(data))
+    })
+  }
+}
+export function sendMsg({from, to, msg}) {
+  return dispatch => {
+    socket.emit('sendmsg', {from, to, msg})
+  }
 }
 export function getMegList(){
   return dispatch =>{
