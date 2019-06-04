@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, InputItem, NavBar } from 'antd-mobile';
+import { List, InputItem, NavBar, Icon } from 'antd-mobile';
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import { getMegList, sendMsg, recvMsg } from '../../redux/chat.redux'
@@ -11,12 +11,11 @@ class Chat extends React.Component {
     this.state = {text: '',msg:[]}
   }
   componentDidMount() {
-    // socket.on('recvmsg', (data)=>{
-    //   this.setState({
-    //     msg:[...this.state.msg, data.text]
-    //   })
-    // })
-  }
+    if (!this.props.chat.chatmsg.length) {
+      this.props.getMegList()
+      this.props.recvMsg()
+    }
+	}
   handleSubmit() {
     // socket.emit('sendmsg',{text: this.state.text})
     const from = this.props.user._id;
@@ -26,24 +25,35 @@ class Chat extends React.Component {
     this.setState({text: ''})
   }
   render() {
-    const user = this.props.match.params.user
+    const userid = this.props.match.params.user
     const Item = List.Item
+    const users = this.props.chat.users
+    if (!users[userid]) {
+      return null
+    }
     return (
       <div id='chat-page'>
-        <NavBar mode="dark">
-          {this.props.match.params.user}
+        <NavBar
+          mode="dark"
+          icon={<Icon type="left" />}
+          onLeftClick = {() => {
+            this.props.history.goBack()
+          }}
+        >
+          {users[userid].name}
         </NavBar>
         {this.props.chat.chatmsg.map(v => {
-          return v.from === user?(
+          const avatar = require(`../img/${users[v.from].avatar}.png`)
+          return v.from === userid?(
             <List key={v._id}>
               <Item
-                // thumb={}
+                thumb={avatar}
               >{v.content}</Item>
             </List>
           ):(
             <List key={v._id}>
               <Item
-                extra={'avatar'}
+                extra={<img src={avatar} alt="avatar"/>}
                 className="chat-me">{v.content}</Item>
             </List>
           )

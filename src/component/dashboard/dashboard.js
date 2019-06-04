@@ -12,8 +12,8 @@ function Msg(){
 }
 class Dashboard extends React.Component{
 	componentDidMount() {
-		this.props.getMegList()
-    this.props.recvMsg()
+	  this.props.getMegList()
+      this.props.recvMsg()
 	}
 
 	render(){
