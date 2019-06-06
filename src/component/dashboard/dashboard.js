@@ -12,8 +12,10 @@ function Msg(){
 }
 class Dashboard extends React.Component{
 	componentDidMount() {
-	  this.props.getMegList()
+	  if(!this.props.chat.chatmsg.length) {
+      this.props.getMegList()
       this.props.recvMsg()
+    }
 	}
 
 	render(){
