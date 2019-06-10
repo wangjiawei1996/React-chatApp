@@ -6,16 +6,15 @@ import NavLinkBar from '../navlink/navlink'
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
 import User from '../../component/user/user'
+import Msg from '../msg/msg'
 import { getMegList, recvMsg } from '../../redux/chat.redux'
-function Msg(){
-	return <h2>消息列表页面</h2>
-}
+
 class Dashboard extends React.Component{
 	componentDidMount() {
 	  if(!this.props.chat.chatmsg.length) {
       this.props.getMegList()
       this.props.recvMsg()
-    }
+      }
 	}
 
 	render(){
