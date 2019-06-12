@@ -1,7 +1,12 @@
 const mongoose = require('mongoose')
 //连接mongo
 const DB_URL = 'mongodb://localhost:27017/imooc-chat'
-mongoose.connect(DB_URL)
+mongoose.connect(DB_URL,{useNewUrlParser:true},function(err){
+  if(err){
+      console.log('Connection Error:' + err)
+  }else{
+  　　console.log('Connection success!') }
+})
 
 const models = {
   user: {
@@ -20,14 +25,14 @@ const models = {
     'to': {'type': String, 'require': true},
     'read':{'type':Boolean, default: false},
     'content': {'type': String, 'require': true, content: ''},
-    'create_time': {'type': Number,'default': new Date().getTime()}
+    'create_time':{'type':Number,'default':new Date().getTime()}
   }
 }
 for (let m in models) {
-  mongoose.model(m, new mongoose.Schema(models[m]))
+  mongoose.model(m,new mongoose.Schema(models[m]))
 }
 module.exports = {
-  getModel: function(name) {
-    return mongoose.model(name)
+  getModel:function(name){
+      return mongoose.model(name)
   }
 }
